@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <title>Kő Papír Olló - Szabó Barnabás</title>
+  <style>
+    body { font-family: Arial; text-align: center; margin-top: 50px; }
+    button { padding: 10px 20px; font-size: 18px; margin: 10px; }
+    #eredmeny { margin-top: 30px; font-size: 20px; }
+  </style>
+</head>
+<body>
+  <h1>Kő - Papír - Olló</h1>
+  <p>Szabó Barnabás játéka</p>
+  <button onclick="jatekosValaszt('kő')">Kő</button>
+  <button onclick="jatekosValaszt('papír')">Papír</button>
+  <button onclick="jatekosValaszt('olló')">Olló</button>
+
+  <div id="eredmeny"></div>
+
+  <script>
+    function gepValaszt() {
+      const valasztasok = ['kő', 'papír', 'olló'];
+      return valasztasok[Math.floor(Math.random() * 3)];
+    }
+
+    function jatekosValaszt(valasztas) {
+      const gep = gepValaszt();
+      let eredmeny = '';
+
+      if (valasztas === gep) {
+        eredmeny = `Döntetlen! Mindketten: ${valasztas}`;
+      } else if (
+        (valasztas === 'kő' && gep === 'olló') ||
+        (valasztas === 'papír' && gep === 'kő') ||
+        (valasztas === 'olló' && gep === 'papír')
+      ) {
+        eredmeny = `Nyertél! Te: ${valasztas}, Gép: ${gep}`;
+      } else {
+        eredmeny = `Vesztettél! Te: ${valasztas}, Gép: ${gep}`;
+      }
+
+      document.getElementById('eredmeny').innerText = eredmeny;
+    }
+  </script>
+</body>
+</html>
